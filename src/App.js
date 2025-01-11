@@ -7,6 +7,9 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!firstName || !lastName) {
+      return;
+    }
     setFullName(`${firstName} ${lastName}`);
   };
 
@@ -14,20 +17,19 @@ function App() {
     <div className="App">
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="name">First Name: </label>
-
+          <label htmlFor="firstName">First Name: </label>
           <input
             type="text"
-            id="name"
+            id="firstName"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
             required
           />
         </div>
         <div>
-          <label htmlFor="surname">Last Name:</label>
+          <label htmlFor="lastName">Last Name:</label>
           <input
-            id="surname"
+            id="lastName"
             type="text"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
@@ -37,7 +39,7 @@ function App() {
         <button type="submit">Submit</button>
       </form>
 
-      <div>{fullName && <h1>Full Name: {fullName}</h1>}</div>
+      {fullName && <h1>Full Name: {fullName}</h1>}
     </div>
   );
 }
