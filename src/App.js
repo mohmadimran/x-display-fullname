@@ -14,32 +14,29 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <div>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="firstName">First Name: </label>
-          <input
-            type="text"
-            id="firstName"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="lastName">Last Name:</label>
-          <input
-            id="lastName"
-            type="text"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-            required
-          />
-        </div>
+        <label htmlFor="firstName">First Name: </label>
+        <input
+          type="text"
+          id="firstName"
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+          required
+        />
+
+        <label htmlFor="lastName">Last Name:</label>
+        <input
+          id="lastName"
+          type="text"
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
+          required
+        />
         <button type="submit">Submit</button>
       </form>
 
-      {fullName && <h1>Full Name: {fullName}</h1>}
+      {fullName && <p>Full Name: {fullName}</p>}
     </div>
   );
 }
