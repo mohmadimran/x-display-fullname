@@ -1,44 +1,47 @@
 import { useState } from "react";
 
-function App() {
+export default function App() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [fullName, setFullName] = useState("");
+  const [isFullName, setisFullName] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!firstName || !lastName) {
+    if (!firstName.trim() || !lastName.trim()) {
       return;
     }
-    setFullName(`${firstName} ${lastName}`);
+    setisFullName(true);
   };
+
+  const fullName = `${firstName.trim()} ${lastName.trim()}`;
 
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="firstName">First Name: </label>
-        <input
-          type="text"
-          id="firstName"
-          value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
-          required
-        />
-
-        <label htmlFor="lastName">Last Name:</label>
-        <input
-          id="lastName"
-          type="text"
-          value={lastName}
-          onChange={(e) => setLastName(e.target.value)}
-          required
-        />
+        <div>
+          <label htmlFor="firstName">First Name: </label>
+          <input
+            type="text"
+            id="firstName"
+            name="firstName"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+          />
+        </div>
+        <div>
+          <label htmlFor="lastName">Last Name:</label>
+          <input
+            id="lastName"
+            name="lastName"
+            type="text"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+          />
+        </div>
         <button type="submit">Submit</button>
       </form>
 
-      {fullName && <p>Full Name: {fullName}</p>}
+      <div>{isFullName ? (<p>Full Name: {fullName}</p>) : null} </div>
     </div>
   );
 }
-
-export default App;
