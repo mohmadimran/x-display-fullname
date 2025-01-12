@@ -1,22 +1,20 @@
 import { useState } from "react";
 
-export default function NameComponent() {
+export default function App() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [isFullName, setFullName] = useState(false);
-
+  const [fullName, setFullName] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!firstName.trim() || !lastName.trim()) {
+    if (!firstName || !lastName) {
       return;
     }
-    setFullName(true);
+    setFullName(`${firstName}${lastName}`);
   };
-
-  const fullName = `${firstName.trim()} ${lastName.trim()}`;
 
   return (
     <div>
+      <h1>Full Name Display</h1>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="firstName">First Name: </label>
@@ -43,7 +41,11 @@ export default function NameComponent() {
         <button type="submit">Submit</button>
       </form>
 
-      <div>{isFullName ? (<p>Full Name: {fullName}</p>) : null} </div>
+      {fullName && (
+        <div>
+          <p>Full Name: {fullName}</p>
+        </div>
+      )}
     </div>
   );
 }
