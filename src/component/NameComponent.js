@@ -6,10 +6,10 @@ export default function App() {
   const [fullName, setFullName] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!firstName || !lastName) {
+    if (!firstName.trim() || !lastName.trim()) {
       return;
     }
-    setFullName(`${firstName}${lastName}`);
+    setFullName(`${firstName.trim()} ${lastName.trim()}`);
   };
 
   return (
